@@ -15,7 +15,7 @@ pipeline {
         registryCredential = 'dockerhublogin'
       }
       steps {
-        git branch: "${github_branch}", url: 'https://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@github.com/Kitzanos/bflows-api.git'
+        git branch: "${github_branch}", url: 'https://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@github.com/rbonazzo-KZ/Bflows-core.git'
         script {
           sh 'mvn clean install -Dmaven.test.skip=true -Dspring.profiles.active=production'
         }
