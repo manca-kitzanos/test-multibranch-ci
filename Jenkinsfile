@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Master Branch Deploy Code') {
       when {
-          branch 'master'
+          branch 'main'
       }
       environment {
         github_branch = "master"
