@@ -1,49 +1,35 @@
 pipeline {
-
   agent any
-
   options {
-
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
-
   }
-
   stages {
+    stage('Master Branch Deploy Code') {
+        when {
+            branch 'main'
+        }
+        steps {
+            sh """
+            echo "Building from Main branch"
+            """
 
-    stage('Hello') {
-
-      steps {
-
-        sh '''
-
-          java -version
-
-        '''
-
-      }
-
+            sh """
+            echo "Deploying Code from Main branch"
+            """
+        }
     }
-
-    stage('cat README') {
-
-      when {
-
-        branch "fix-*"
-
-      }
-
-      steps {
-
-        sh '''
-
-          cat README.md
-
-        '''
-
-      }
-
+    stage('Develop Branch Deploy Code') {
+        when {
+            branch 'develop'
+        }
+        steps {
+            sh """
+            echo "Building from Develop branch"
+            """
+            sh """
+            echo "Deploying from Develop branch"
+            """
+       }
     }
-
   }
-
 }
